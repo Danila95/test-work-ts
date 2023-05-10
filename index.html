@@ -2,13 +2,24 @@
 <html lang="en">
 	<head>
 		<meta charset="UTF-8" />
-		<link rel="icon" type="image/svg+xml" href="/vite.svg" />
+		<link rel="icon" type="image/svg+xml" href="./src/assets/icons/sun.svg" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Vite + TS</title>
+		<link rel="stylesheet" href="./src/style.css" />
+		<title>Weather sounds</title>
 	</head>
 	<body>
-		<div id="app"></div>
+		<div id="app">
+			<header>
+				<h1>Weather sounds</h1>
+			</header>
+			<div class="buttons">
+				<button class="buttons__summer"><img src="./src/assets/icons/sun.svg" alt="" /></button>
+				<button class="buttons__rain"><img src="./src/assets/icons/cloud-rain.svg" alt="" /></button>
+				<button class="buttons__winter"><img src="./src/assets/icons/cloud-snow.svg" alt="" /></button>
+			</div>
+			<input id="volume" type="range" name="volume" min="0" max="100" value="50" />
+		</div>
 		<script type="module" src="/src/main.ts"></script>
 	</body>
 </html>
