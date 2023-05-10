@@ -22,3 +22,40 @@
 // `
 
 // setupCounter(document.querySelector<HTMLButtonElement>('#counter')!)
+
+const btnSummer = document.querySelector('.buttons__summer') as HTMLInputElement
+const btnRain = document.querySelector('.buttons__rain') as HTMLInputElement
+const btnWinter = document.querySelector('.buttons__winter') as HTMLInputElement
+
+const summerSound = new Audio('./src/assets/sounds/summer.mp3')
+const rainSound = new Audio('./src/assets/sounds/rain.mp3')
+const winterSound = new Audio('./src/assets/sounds/winter.mp3')
+
+function startSound(audio: any): void {
+    if (audio) {
+      audio.currentTime = 0;
+      audio.play();
+    }
+  }
+
+btnSummer.addEventListener('click', () => {
+    startSound(summerSound)
+	// summerSound.play()
+	rainSound.pause()
+    winterSound.pause()
+})
+
+btnRain.addEventListener('click', () => {
+    startSound(rainSound)
+	// rainSound.play()
+	summerSound.pause()
+	winterSound.pause()
+
+})
+
+btnWinter.addEventListener('click', () => {
+    startSound(winterSound)
+	// winterSound.play()
+    summerSound.pause()
+	rainSound.pause()
+})
