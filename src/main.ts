@@ -1,61 +1,82 @@
-// import './style.css'
-// import typescriptLogo from './typescript.svg'
-// import viteLogo from '/vite.svg'
-// import { setupCounter } from './counter.ts'
-
-// document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
-//   <div>
-//     <a href="https://vitejs.dev" target="_blank">
-//       <img src="${viteLogo}" class="logo" alt="Vite logo" />
-//     </a>
-//     <a href="https://www.typescriptlang.org/" target="_blank">
-//       <img src="${typescriptLogo}" class="logo vanilla" alt="TypeScript logo" />
-//     </a>
-//     <h1>Vite + TypeScript</h1>
-//     <div class="card">
-//       <button id="counter" type="button"></button>
-//     </div>
-//     <p class="read-the-docs">
-//       Click on the Vite and TypeScript logos to learn more
-//     </p>
-//   </div>
-// `
-
-// setupCounter(document.querySelector<HTMLButtonElement>('#counter')!)
-
 const btnSummer = document.querySelector('.buttons__summer') as HTMLInputElement
 const btnRain = document.querySelector('.buttons__rain') as HTMLInputElement
 const btnWinter = document.querySelector('.buttons__winter') as HTMLInputElement
 
-const summerSound = new Audio('./src/assets/sounds/summer.mp3')
-const rainSound = new Audio('./src/assets/sounds/rain.mp3')
-const winterSound = new Audio('./src/assets/sounds/winter.mp3')
+const rangeVolume = document.getElementById('volume') as HTMLInputElement
 
-function startSound(audio: any): void {
-    if (audio) {
-      audio.currentTime = 0;
-      audio.play();
-    }
-  }
+const summerSound = new Audio('./src/assets/sounds/summer.mp3')
+let statusSummerSound: string = 'pause'
+
+const rainSound = new Audio('./src/assets/sounds/rain.mp3')
+let statusRainSound: string = 'pause'
+
+const winterSound = new Audio('./src/assets/sounds/winter.mp3')
+let statusWinterSound: string = 'pause'
+
+function changeBackground(path: string): void {
+	// Создаем новое правило CSS
+	const newRule: string = `body::before { background-image: url("${path}"); }`
+
+	// Добавляем правило в таблицу стилей
+	const styleElement = document.createElement('style')
+	document.head.appendChild(styleElement)
+	const styleSheet = styleElement.sheet as CSSStyleSheet
+	styleSheet.insertRule(newRule, 0)
+}
+
+rangeVolume.addEventListener('input', () => {
+	summerSound.volume = Number(rangeVolume.value)
+	rainSound.volume = Number(rangeVolume.value)
+	winterSound.volume = Number(rangeVolume.value)
+})
 
 btnSummer.addEventListener('click', () => {
-    startSound(summerSound)
-	// summerSound.play()
-	rainSound.pause()
-    winterSound.pause()
+	if (statusSummerSound === 'pause') {
+		statusSummerSound = 'play'
+		statusRainSound = 'pause'
+		statusWinterSound = 'pause'
+
+		changeBackground('./src/assets/summer-bg.jpg')
+
+		summerSound.play()
+		rainSound.pause()
+		winterSound.pause()
+	} else {
+		statusSummerSound = 'pause'
+		summerSound.pause()
+	}
 })
 
-btnRain.addEventListener('click', () => {
-    startSound(rainSound)
-	// rainSound.play()
-	summerSound.pause()
-	winterSound.pause()
+btnRain.addEventListener('click', (): void => {
+	if (statusRainSound === 'pause') {
+		statusRainSound = 'play'
+		statusSummerSound = 'pause'
+		statusWinterSound = 'pause'
 
+		changeBackground('./src/assets/rainy-bg.jpg')
+
+		rainSound.play()
+		summerSound.pause()
+		winterSound.pause()
+	} else {
+		statusRainSound = 'pause'
+		rainSound.pause()
+	}
 })
 
-btnWinter.addEventListener('click', () => {
-    startSound(winterSound)
-	// winterSound.play()
-    summerSound.pause()
-	rainSound.pause()
+btnWinter.addEventListener('click', (): void => {
+	if (statusWinterSound === 'pause') {
+		statusWinterSound = 'play'
+		statusSummerSound = 'pause'
+		statusRainSound = 'pause'
+
+		changeBackground('./src/assets/winter-bg.jpg')
+
+		winterSound.play()
+		summerSound.pause()
+		rainSound.pause()
+	} else {
+		statusWinterSound = 'pause'
+		winterSound.pause()
+	}
 })

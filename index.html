@@ -8,7 +8,7 @@
 		<link rel="stylesheet" href="./src/style.css" />
 		<title>Weather sounds</title>
 	</head>
-	<body>
+	<body class="body">
 		<div id="app">
 			<header>
 				<h1>Weather sounds</h1>
@@ -18,7 +18,7 @@
 				<button class="buttons__rain"><img src="./src/assets/icons/cloud-rain.svg" alt="" /></button>
 				<button class="buttons__winter"><img src="./src/assets/icons/cloud-snow.svg" alt="" /></button>
 			</div>
-			<input id="volume" type="range" name="volume" min="0" max="100" value="50" />
+			<input id="volume" type="range" name="volume" min="0" max="1" step="0.1" value="0.5" />
 		</div>
 		<script type="module" src="/src/main.ts"></script>
 	</body>
