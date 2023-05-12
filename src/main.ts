@@ -1,6 +1,6 @@
-const btnSummer = document.querySelector('.buttons__summer') as HTMLInputElement
-const btnRain = document.querySelector('.buttons__rain') as HTMLInputElement
-const btnWinter = document.querySelector('.buttons__winter') as HTMLInputElement
+const btnSummer: HTMLInputElement = document.querySelector('.buttons__summer') as HTMLInputElement
+const btnRain: HTMLInputElement = document.querySelector('.buttons__rain') as HTMLInputElement
+const btnWinter: HTMLInputElement = document.querySelector('.buttons__winter') as HTMLInputElement
 
 const rangeVolume = document.getElementById('volume') as HTMLInputElement
 
@@ -20,7 +20,7 @@ function changeBackground(path: string): void {
 	// Добавляем правило в таблицу стилей
 	const styleElement = document.createElement('style')
 	document.head.appendChild(styleElement)
-	const styleSheet = styleElement.sheet as CSSStyleSheet
+	const styleSheet: CSSStyleSheet = styleElement.sheet as CSSStyleSheet
 	styleSheet.insertRule(newRule, 0)
 }
 
